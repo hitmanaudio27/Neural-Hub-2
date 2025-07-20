@@ -1,0 +1,273 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  --radius: 0.625rem;
+  --background: oklch(0.02 0 0);
+  --foreground: oklch(0.98 0 0);
+  --card: oklch(0.05 0 0);
+  --card-foreground: oklch(0.98 0 0);
+  --popover: oklch(0.05 0 0);
+  --popover-foreground: oklch(0.98 0 0);
+  --primary: oklch(0.7 0.3 200);
+  --primary-foreground: oklch(0.98 0 0);
+  --secondary: oklch(0.1 0 0);
+  --secondary-foreground: oklch(0.98 0 0);
+  --muted: oklch(0.1 0 0);
+  --muted-foreground: oklch(0.6 0 0);
+  --accent: oklch(0.1 0 0);
+  --accent-foreground: oklch(0.98 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.15 0 0);
+  --input: oklch(0.15 0 0);
+  --ring: oklch(0.7 0.3 200);
+  --chart-1: oklch(0.7 0.3 200);
+  --chart-2: oklch(0.6 0.3 280);
+  --chart-3: oklch(0.8 0.3 320);
+  --chart-4: oklch(0.65 0.3 50);
+  --chart-5: oklch(0.75 0.3 120);
+  --sidebar: oklch(0.05 0 0);
+  --sidebar-foreground: oklch(0.98 0 0);
+  --sidebar-primary: oklch(0.7 0.3 200);
+  --sidebar-primary-foreground: oklch(0.98 0 0);
+  --sidebar-accent: oklch(0.1 0 0);
+  --sidebar-accent-foreground: oklch(0.98 0 0);
+  --sidebar-border: oklch(0.15 0 0);
+  --sidebar-ring: oklch(0.7 0.3 200);
+  
+  /* Neural Nexus Custom Colors */
+  --neural-cyan: #00FFFF;
+  --neural-violet: #6A0DAD;
+  --neural-pink: #FF1493;
+  --neural-gold: #FFD700;
+  --neural-emerald: #00FF88;
+  --neural-void: #0A0A0A;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    margin: 0;
+    overflow: hidden;
+    background: var(--neural-void);
+    font-family: 'Inter', sans-serif;
+    color: var(--foreground);
+  }
+  
+  .neural-font {
+    font-family: 'Orbitron', monospace !important;
+  }
+  
+  canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+  }
+}
+
+@layer components {
+  .neural-glow {
+    box-shadow: 0 0 20px var(--neural-cyan), 0 0 40px var(--neural-cyan), 0 0 60px var(--neural-cyan);
+  }
+  
+  .neural-pulse {
+    animation: neural-pulse 2s ease-in-out infinite alternate;
+  }
+  
+  .neural-float {
+    animation: neural-float 6s ease-in-out infinite;
+  }
+  
+  .consciousness-layer {
+    @apply absolute inset-0 pointer-events-none transition-opacity duration-1000;
+    background: radial-gradient(circle at center, transparent 0%, rgba(0, 255, 255, 0.1) 50%, transparent 100%);
+  }
+  
+  .thought-particle {
+    @apply absolute w-2 h-2 rounded-full opacity-70;
+    background: var(--neural-cyan);
+    box-shadow: 0 0 10px var(--neural-cyan);
+    animation: thought-flow 8s linear infinite;
+  }
+  
+  .neural-node {
+    @apply relative cursor-pointer transition-all duration-300;
+    background: radial-gradient(circle, var(--neural-cyan) 0%, transparent 70%);
+  }
+  
+  .neural-node:hover {
+    transform: scale(1.2);
+    filter: brightness(1.5);
+  }
+  
+  .neural-connection {
+    @apply absolute;
+    background: linear-gradient(90deg, var(--neural-cyan), var(--neural-violet));
+    height: 2px;
+    opacity: 0.6;
+    animation: neural-flow 3s ease-in-out infinite;
+  }
+  
+ /* Awakening text gradient animation */
+.awakening-text {
+  background: linear-gradient(45deg, #00FFFF, #6A0DAD, #FF1493, #FFD700, #00FF88);
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientShift 3s ease-in-out infinite;
+  font-family: 'Orbitron', monospace;
+  font-weight: 700;
+  text-align: center;
+}
+
+/* Neural grid fallback for when WebGL is not available */
+.neural-grid {
+  background-image: 
+    linear-gradient(rgba(0, 255, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 50px 50px;
+  animation: gridPulse 4s ease-in-out infinite;
+}
+
+@keyframes gridPulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.6; }
+}  .layer-button {
+    @apply px-6 py-3 rounded-lg border-2 transition-all duration-300 font-semibold;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(10px);
+    font-family: 'Orbitron', monospace;
+  }
+  
+  .layer-button.perception {
+    border-color: var(--neural-cyan);
+    color: var(--neural-cyan);
+  }
+  
+  .layer-button.memory {
+    border-color: var(--neural-violet);
+    color: var(--neural-violet);
+  }
+  
+  .layer-button.creativity {
+    border-color: var(--neural-pink);
+    color: var(--neural-pink);
+  }
+  
+  .layer-button.logic {
+    border-color: var(--neural-gold);
+    color: var(--neural-gold);
+  }
+  
+  .layer-button.emotion {
+    border-color: var(--neural-emerald);
+    color: var(--neural-emerald);
+  }
+  
+  .layer-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(0, 255, 255, 0.3);
+  }
+  
+  .thought-stream {
+    @apply absolute bottom-0 left-0 right-0 h-32 overflow-hidden;
+    background: linear-gradient(to top, rgba(0, 255, 255, 0.1), transparent);
+  }
+  
+  .neural-playground {
+    @apply fixed inset-0 bg-black/90 backdrop-blur-lg flex items-center justify-center z-50;
+  }
+  
+  .playground-canvas {
+    @apply w-full h-full border border-cyan-500/30 rounded-lg;
+    background: radial-gradient(circle at center, rgba(0, 255, 255, 0.05), transparent);
+  }
+}
+
+@keyframes neural-pulse {
+  0% { opacity: 0.5; transform: scale(1); }
+  100% { opacity: 1; transform: scale(1.05); }
+}
+
+@keyframes neural-float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes thought-flow {
+  0% { transform: translateX(-100px) translateY(0px); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateX(100vw) translateY(-50px); opacity: 0; }
+}
+
+@keyframes neural-flow {
+  0% { opacity: 0.3; }
+  50% { opacity: 1; }
+  100% { opacity: 0.3; }
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@media (max-width: 768px) {
+  .awakening-text {
+    @apply text-2xl;
+  }
+  
+  .layer-button {
+    @apply px-4 py-2 text-sm;
+  }
+}
+
